@@ -1,4 +1,4 @@
-[![Workflow version](https://img.shields.io/badge/Workflow%20version-@v1-blue)](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows#calling-a-reusable-workflow)
+[![Workflow version](https://img.shields.io/badge/Workflow%20version-@v1.0.1-blue)](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows#calling-a-reusable-workflow)
 [![License: MIT or Apache](https://img.shields.io/badge/License-MIT%20or%20Apache%202.0-yellow.svg)](./COPYRIGHT)
 
 # Shared Workflows

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2021-10-29
+
 ### Fixed
 
 - Modify `Cargo.toml` version based on received version input
@@ -24,5 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Draft new release` shared workflow
 - `Release to crates.io` shared workflow
 
-[Unreleased]: https://github.com/farcaster-project/workflows/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/farcaster-project/workflows/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/farcaster-project/workflows/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/farcaster-project/workflows/compare/0c88c46cfe1d25098ec47216e4b2dfc8bf871338...v1.0.0
