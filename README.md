@@ -30,7 +30,7 @@ on:
 jobs:
   draft-new-release:
     name: "Draft a new release"
-    uses: farcaster-project/workflows/.github/workflows/draft-new-release.yml@v1
+    uses: farcaster-project/workflows/.github/workflows/draft-new-release.yml@v1.0.0
     with:
       version: ${{ github.event.inputs.version }}
 ```
@@ -55,7 +55,7 @@ jobs:
   create_release:
     name: Create from merged release branch
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
-    uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1
+    uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.0.0
 ```
 
 ### Release to crates.io
@@ -72,7 +72,7 @@ on:
 jobs:
   release:
     name: "Publish the new release to crates.io"
-    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1
+    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.0
     secrets:
       cratesio_token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
 ```
