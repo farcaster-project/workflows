@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Modify `Cargo.toml` version based on received version input
+
 ### Added
 
 - Format checks on markdown and toml files
