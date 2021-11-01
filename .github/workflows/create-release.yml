@@ -2,6 +2,15 @@ name: "Create release"
 
 on:
   workflow_call:
+    inputs:
+      artifact_name:
+        description: 'The name of the artifact to download. Default to no artifact downloaded.'
+        required: false
+        type: string
+      files:
+        description: 'Newline-delimited globs of paths to assets to upload for release, must be found in the downloaded artifact.'
+        required: false
+        type: string
 
 jobs:
   create_release:
@@ -26,15 +35,20 @@ jobs:
         with:
           version: ${{ steps.extract-version.outputs.version }}
 
-      - name: Create GitHub release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download artifacts for release
+        if: ${{ inputs.artifact_name }}
+        uses: actions/download-artifact@v2
         with:
+          name: ${{ inputs.artifact_name }}
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v0.1.13
+        with:
+          name: ${{ steps.extract-version.outputs.version }}
           tag_name: ${{ format('v{0}', steps.extract-version.outputs.version) }}
-          release_name: ${{ steps.extract-version.outputs.version }}
+          fail_on_unmatched_files: ${{ inputs.artifact_name }}
           draft: false
           prerelease: false
           body: ${{ steps.changelog.outputs.description }}
-          commitish: ${{ github.event.pull_request.merge_commit_sha }}
-
+          target_commitish: ${{ github.event.pull_request.merge_commit_sha }}
+          files: ${{ inputs.files }}

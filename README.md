@@ -58,9 +58,54 @@ jobs:
     uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.0.1
 ```
 
+If you want to attached files to the release you can declare a `create_release` job with:
+
+```yaml
+jobs:
+  produce_binaries:
+    name: Compile released binaries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Compile released binaries
+        run: ...
+
+      - name: Archive release folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-folder
+          path: target/release
+          retention-days: 7
+
+  create_release:
+    name: Create from merged release branch
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
+    uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.0.1
+    needs: produce_binaries
+    with:
+      artifact_name: release-folder
+      files: |
+         target/release/bin1
+         target/release/bin2
+```
+
+You can add another job after `create_release`, e.g. `releast_to_crates`, triggered only when the first is successfully completed i.e. when the release is published with:
+
+```yaml
+  releast_to_crates:
+    name: Release to crates.io
+    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.1
+    needs: create_release
+    secrets:
+      cratesio_token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+```
+
+Or use the method below with `workflow_run: workflows: ["Name of the worflow"]` to keep separated files.
+
 ### Release to crates.io
 
-`release-to-crates-io.yml` publish the crate to crates.io under the authentified user by **cratesio_token**. Example of usage:
+`release-to-crates-io.yml` publish the crate to crates.io under the authentified user by **cratesio_token**. Example of stand-alone usage (see above for chained usage after `create_release`):
 
 ```yaml
 name: Release to crates.io
@@ -76,6 +121,19 @@ jobs:
     secrets:
       cratesio_token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
 ```
+
+If you want to trigger this workflow after another you can add:
+
+```yaml
+# Trigger when the "Create release" workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Create release"]
+    types:
+      - completed
+```
+
+Where `"Create release"` is the name of the workflow that will trigger the `"Release to crates.io"` workflow when completed.
 
 ## Changelog
 

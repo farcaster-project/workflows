@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add workflow call inputs on `create-release.yml` workflow to pass an artifact containing files to attached to the release
+
+### Changed
+
+- Improved documentation on how to chain and trigger workflows
+
 ## [1.0.1] - 2021-10-29
 
 ### Fixed
