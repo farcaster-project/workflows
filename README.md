@@ -1,4 +1,4 @@
-[![Workflow version](https://img.shields.io/badge/Workflow%20version-@v1.0.1-blue)](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows#calling-a-reusable-workflow)
+[![Workflow version](https://img.shields.io/badge/Workflow%20version-@v1.0.2-blue)](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows#calling-a-reusable-workflow)
 [![License: MIT or Apache](https://img.shields.io/badge/License-MIT%20or%20Apache%202.0-yellow.svg)](./COPYRIGHT)
 
 # Shared Workflows
@@ -30,7 +30,7 @@ on:
 jobs:
   draft-new-release:
     name: "Draft a new release"
-    uses: farcaster-project/workflows/.github/workflows/draft-new-release.yml@v1.0.1
+    uses: farcaster-project/workflows/.github/workflows/draft-new-release.yml@v1.0.2
     with:
       version: ${{ github.event.inputs.version }}
 ```
@@ -55,7 +55,7 @@ jobs:
   create_release:
     name: Create from merged release branch
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
-    uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.0.1
+    uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.0.2
 ```
 
 If you want to attached files to the release you can declare a `create_release` job with:
@@ -81,7 +81,7 @@ jobs:
   create_release:
     name: Create from merged release branch
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
-    uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.0.1
+    uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.0.2
     needs: produce_binaries
     with:
       artifact_name: release-folder
@@ -95,7 +95,7 @@ You can add another job after `create_release`, e.g. `releast_to_crates`, trigge
 ```yaml
   releast_to_crates:
     name: Release to crates.io
-    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.1
+    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.2
     needs: create_release
     secrets:
       cratesio_token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
@@ -117,7 +117,7 @@ on:
 jobs:
   release:
     name: "Publish the new release to crates.io"
-    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.1
+    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.2
     secrets:
       cratesio_token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
 ```
