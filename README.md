@@ -1,4 +1,4 @@
-[![Workflow version](https://img.shields.io/badge/Workflow%20version-@v1.0.2-blue)](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows#calling-a-reusable-workflow)
+[![Workflow version](https://img.shields.io/badge/Workflow%20version-@v1.0.2-blue)](https://github.com/farcaster-project/workflows/releases/tag/v1.0.2)
 [![License: MIT or Apache](https://img.shields.io/badge/License-MIT%20or%20Apache%202.0-yellow.svg)](./COPYRIGHT)
 
 # Shared Workflows
