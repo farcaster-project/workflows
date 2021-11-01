@@ -90,10 +90,10 @@ jobs:
          target/release/bin2
 ```
 
-You can add another job after `create_release`, e.g. `releast_to_crates`, triggered only when the first is successfully completed i.e. when the release is published with:
+You can add another job after `create_release`, e.g. `release_to_crates`, triggered only when the first is successfully completed i.e. when the release is published with:
 
 ```yaml
-  releast_to_crates:
+  release_to_crates:
     name: Release to crates.io
     uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.2
     needs: create_release
