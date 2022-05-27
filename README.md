@@ -13,7 +13,7 @@ You can find an example of usage for the following shared workflows.
 
 `draft-new-release.yml` prepare the creation of a new release by creating a new branch `release/{version}` and opening a pull request targeting `main`.
 
-**The changelog is updated to `{version}` and today's date. `Cargo.toml` version is updated to `{version}` and `Cargo.toml` is updated if input `build` is set to true. Set input `check_publish` to dry run publish**.
+**The changelog is updated to `{version}` and today's date. `Cargo.toml` version is updated to `{version}` and `Cargo.toml` is updated if input `build` (default false) is set to true. Set input `check_publish` (default false) to dry run publish**.
 
 > Version should follow semantic versioning.
 
