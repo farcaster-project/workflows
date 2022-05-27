@@ -37,7 +37,7 @@ jobs:
 
       - name: Download artifacts for release
         if: ${{ inputs.artifact_name }}
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.artifact_name }}
 
