@@ -7,6 +7,16 @@ on:
         description: 'The new version in major.minor.patch format.'
         required: true
         type: string
+      build:
+        description: 'Build the projet with cargo, useful when Cargo.lock is commited and needs to be updated.'
+        required: false
+        default: false
+        type: boolean
+      check_publish:
+        description: 'Dry run cargo publish before pushing changes, useful to not allow unpublishable releases.'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   draft-new-release:
@@ -30,10 +40,24 @@ jobs:
           version: ${{ github.event.inputs.version }}
           manifest: Cargo.toml
 
+      - name: Install latest stable
+        uses: actions-rs/toolchain@v1
+        with:
+            default: true
+            override: true
+
+      - name: Cargo build update lockfile
+        if: ${{ inputs.build }}
+        run: cargo build
+
       - name: Format CHANGELOG
         run: |
           curl -fsSL https://dprint.dev/install.sh | sh
           /home/runner/.dprint/bin/dprint fmt CHANGELOG.md
+
+      - name: Publish dry run
+        if: ${{ inputs.check_publish }}
+        run: cargo publish --dry-run --allow-dirty
 
       - name: Add, Commit & Push
         id: make-commit

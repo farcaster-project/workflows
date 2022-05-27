@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New input `build` for `draft-new-release.yml` to build the crate before add & commit the files, allows lockfile update
+- New input `check_publish` for `draft-new-release.yml` to dry run the cargo publish before add & commit the files, allows to not open a PR on unpublishable state.
+
 ## [1.0.2] - 2021-11-01
 
 ### Added
