@@ -99,12 +99,12 @@ jobs:
 You can add another job after `create_release`, e.g. `release_to_crates`, triggered only when the first is successfully completed i.e. when the release is published with:
 
 ```yaml
-  release_to_crates:
-    name: Release to crates.io
-    uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.2
-    needs: create_release
-    secrets:
-      cratesio_token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+release_to_crates:
+  name: Release to crates.io
+  uses: farcaster-project/workflows/.github/workflows/release-to-crates-io.yml@v1.0.2
+  needs: create_release
+  secrets:
+    cratesio_token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
 ```
 
 Or use the method below with `workflow_run: workflows: ["Name of the worflow"]` to keep separated files.
