@@ -11,7 +11,11 @@ You can find an example of usage for the following shared workflows.
 
 ### Draft new release
 
-`draft-new-release.yml` prepare the creation of a new release by creating a new branch `release/{version}` and opening a pull request targeting `main`. **The changelog is updated with the `{version}` parameter and today's date and the `Cargo.toml` version is updated with the new `{version}`**. Version should follow semantic versioning.
+`draft-new-release.yml` prepare the creation of a new release by creating a new branch `release/{version}` and opening a pull request targeting `main`.
+
+**The changelog is updated to `{version}` and today's date. `Cargo.toml` version is updated to `{version}` and `Cargo.toml` is updated if input `build` is set to true. Set input `check_publish` to dry run publish**.
+
+> Version should follow semantic versioning.
 
 The commit will be associated with GitHub Actions bot.
 
@@ -33,6 +37,8 @@ jobs:
     uses: farcaster-project/workflows/.github/workflows/draft-new-release.yml@v1.0.2
     with:
       version: ${{ github.event.inputs.version }}
+      build: false
+      check_publish: true
 ```
 
 ### Create release
