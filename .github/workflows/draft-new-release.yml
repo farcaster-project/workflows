@@ -35,18 +35,14 @@ jobs:
           curl -fsSL https://dprint.dev/install.sh | sh
           /home/runner/.dprint/bin/dprint fmt CHANGELOG.md
 
-      - name: Add & Commit
+      - name: Add, Commit & Push
         id: make-commit
-        uses: EndBug/add-and-commit@v7.4.0
+        uses: EndBug/add-and-commit@v9.0.0
         with:
-          message: Prepare release ${{ github.event.inputs.version }}
-          branch: release/${{ github.event.inputs.version }}
           default_author: github_actions
-          pull: 'NO-PULL'
-          push: false
-
-      - name: Push new branch
-        run: git push origin release/${{ github.event.inputs.version }} --force
+          message: Prepare release ${{ github.event.inputs.version }}
+          new_branch: release/${{ github.event.inputs.version }}
+          push: origin release/${{ github.event.inputs.version }} --set-upstream --force
 
       - name: Create pull request
         uses: thomaseizinger/create-pull-request@1.2.2
