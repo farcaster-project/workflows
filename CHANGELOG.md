@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New input `build` for `draft-new-release.yml` to build the crate before add & commit the files, allows lockfile update
 - New input `check_publish` for `draft-new-release.yml` to dry run the cargo publish before add & commit the files, allows to not open a PR on unpublishable state.
 
+### Changed
+
+- Update `actions/checkout@v3`, `actions/download-artifact@v3`, `thomaseizinger/create-pull-request@1.2.2`, `EndBug/add-and-commit@v9.0.0`, `softprops/action-gh-release@v1`
+- Bump header's year to 2022
+
 ## [1.0.2] - 2021-11-01
 
 ### Added
