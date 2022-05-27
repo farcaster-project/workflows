@@ -42,7 +42,7 @@ jobs:
           name: ${{ inputs.artifact_name }}
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v0.1.13
+        uses: softprops/action-gh-release@v1
         with:
           name: ${{ steps.extract-version.outputs.version }}
           tag_name: ${{ format('v{0}', steps.extract-version.outputs.version) }}
