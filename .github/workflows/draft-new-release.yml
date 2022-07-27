@@ -17,6 +17,11 @@ on:
         required: false
         default: false
         type: boolean
+      base_branch:
+        description: 'Defines the base branch to use to create the pull request against. Default to main.'
+        required: false
+        default: 'main'
+        type: string
 
 jobs:
   draft-new-release:
@@ -43,8 +48,9 @@ jobs:
       - name: Install latest stable
         uses: actions-rs/toolchain@v1
         with:
-            default: true
-            override: true
+          toolchain: stable
+          default: true
+          override: true
 
       - name: Cargo build update lockfile
         if: ${{ inputs.build }}
@@ -73,7 +79,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           head: release/${{ github.event.inputs.version }}
-          base: main
+          base: ${{ inputs.base_branch }}
           title: Release version ${{ github.event.inputs.version }}
           body: |
             Hi @${{ github.actor }}!

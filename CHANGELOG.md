@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New argument `base_branch` in `draft-new-release` (default to `main`).
+
+### Fixed
+
+- Specify toolchain in `draft-new-release` to be _stable_.
+
 ## [1.1.0] - 2022-05-27
 
 ### Added
