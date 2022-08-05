@@ -43,7 +43,7 @@ jobs:
 
 ### Create release
 
-`create-release.yml` allows to create a GitHub release when merging a branch starting with `release/` (this also creates a tag `v{versionn}`).
+`create-release.yml` allows to create a GitHub release when merging a branch starting with `release/` (this also creates a tag `v{version}`).
 
 The release will be associated with GitHub Actions bot.
 
@@ -64,7 +64,7 @@ jobs:
     uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.1.0
 ```
 
-If you want to attached files to the release you can declare a `create_release` job with:
+If you want to attach files to the release you can declare a `create_release` job with:
 
 ```yaml
 jobs:
