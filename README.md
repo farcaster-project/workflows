@@ -13,7 +13,7 @@ You can find an example of usage for the following shared workflows.
 
 `draft-new-release.yml` prepare the creation of a new release by creating a new branch `release/{version}` and opening a pull request targeting `main`.
 
-**The changelog is updated to `{version}` and today's date. `Cargo.toml` version is updated to `{version}` and `Cargo.toml` is updated if input `build` (default false) is set to true. Set input `check_publish` (default false) to dry run publish**.
+**The changelog is updated to `{version}` and today's date. `Cargo.toml` version is updated to `{version}` and `Cargo.lock` is updated if input `build` (default false) is set to true. Set input `check_publish` (default false) to dry run publish**.
 
 > Version should follow semantic versioning.
 
@@ -43,7 +43,7 @@ jobs:
 
 ### Create release
 
-`create-release.yml` allows to create a GitHub release when merging a branch starting with `release/` (this also creates a tag `v{versionn}`).
+`create-release.yml` allows to create a GitHub release when merging a branch starting with `release/` (this also creates a tag `v{version}`).
 
 The release will be associated with GitHub Actions bot.
 
@@ -64,7 +64,7 @@ jobs:
     uses: farcaster-project/workflows/.github/workflows/create-release.yml@v1.1.0
 ```
 
-If you want to attached files to the release you can declare a `create_release` job with:
+If you want to attach files to the release you can declare a `create_release` job with:
 
 ```yaml
 jobs:
